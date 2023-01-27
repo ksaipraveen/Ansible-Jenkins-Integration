@@ -1,0 +1,20 @@
+pipeline{
+
+agent{
+label "Ansiblenode"
+}
+
+stages{
+stage('checkout'){
+steps{
+git branch: 'main', credentialsId: 'git', url: 'https://github.com/ksaipraveen/Ansible-AWS-DynamicHostInventory.git'
+}
+}
+stage('Run Playbook'){
+steps{
+sh "ansible-playbook InstallHTTP.yaml"
+}
+}
+
+}//stages
+}//pipeline
